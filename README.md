@@ -188,4 +188,4 @@ OMP_NUM_THREADS=8 torchrun --nproc-per-node 8 evaluate.py checkpoint=<CHECKPOINT
       primaryClass={cs.AI},
       url={https://arxiv.org/abs/2506.21734}, 
 }
-```
+```# HRM_text

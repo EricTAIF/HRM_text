@@ -31,6 +31,18 @@ wandb: You can sync this run to the cloud by running:
 wandb: wandb sync /home/hp/Documents/HRM/HRM/wandb/offline-run-20250805_200127-wqiq5wgn
 wandb: Find logs at: ./wandb/offline-run-20250805_200127-wqiq5wgn/logs
 
+
+File: data/holdout/alice.txt
+Tokens: 144,128
+Avg CE (nats/token): 5.5569
+Perplexity: 259.016
+Bits per char: 8.017
+File: data/holdout/mobydick.txt
+Tokens: 1,218,048
+Avg CE (nats/token): 4.4390
+Perplexity: 84.692
+Bits per char: 6.404
+
 ## Abstract
 
 Reasoning, the process of devising and executing complex goal-oriented action sequences, remains a critical challenge in AI.

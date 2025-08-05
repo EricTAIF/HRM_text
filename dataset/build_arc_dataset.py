@@ -16,15 +16,10 @@ from common import PuzzleDatasetMetadata, dihedral_transform
 cli = ArgParser()
 
 
+# --- HARDCODED FIX: ONLY ARC-2 DATA WILL BE PROCESSED ---
 class DataProcessConfig(BaseModel):
-    # ARC-1
-    dataset_dirs: List[str] = ["dataset/raw-data/ARC-AGI/data", "dataset/raw-data/ConceptARC/corpus"]
-    output_dir: str = "data/arc-aug-1000"
-    
-    # ARC-2
-    # dataset_dirs: List[str] = ["dataset/raw-data/ARC-AGI-2/data"]
-    # output_dir: str = "data/arc-2-aug-1000"
-
+    dataset_dirs: List[str] = ["dataset/raw-data/ARC-AGI-2/data"]  # Only ARC-2
+    output_dir: str = "data/arc-2-aug-1000"
     seed: int = 42
     num_aug: int = 1000
     
@@ -81,7 +76,9 @@ def np_grid_to_seq_translational_augment(inp: np.ndarray, out: np.ndarray, do_tr
 def puzzle_hash(puzzle: dict):
     # Hash the puzzle for checking equivalence
     def _grid_hash(grid: np.ndarray):
-        buffer = [x.to_bytes(1) for x in grid.shape]
+        #buffer = [x.to_bytes(1) for x in grid.shape]
+        buffer = [x.to_bytes(1, 'little') for x in grid.shape]
+
         buffer.append(grid.tobytes())
         
         return hashlib.sha256(b"".join(buffer)).hexdigest()
@@ -183,7 +180,24 @@ def load_puzzles_arcagi(results: dict, dataset_path: str, config: DataProcessCon
 
 def convert_dataset(config: DataProcessConfig):
     np.random.seed(config.seed)
-    
+       # --- robust handling of dataset_dirs ---
+    # normalize paths
+    ds_list = [os.path.normpath(p) for p in config.dataset_dirs]
+
+    # if someone passed a comma-separated single arg, split it
+    if len(ds_list) == 1 and ("," in ds_list[0]):
+        ds_list = [os.path.normpath(p.strip()) for p in ds_list[0].split(",") if p.strip()]
+
+    # de-duplicate while preserving order
+    seen = set()
+    dataset_dirs = []
+    for p in ds_list:
+        if p not in seen:
+            seen.add(p)
+            dataset_dirs.append(p)
+
+    print("DATASET_DIRS_USED:", dataset_dirs)
+    # ---------------------------------------
     # Read dataset
     data = {}
     for dataset_dir in config.dataset_dirs:

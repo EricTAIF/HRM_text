@@ -2,6 +2,37 @@
 
 ![](./assets/hrm.png)
 
+## TEXT TRAINING
+     
+wandb: 
+wandb: Run history:
+wandb:            num_params ▁
+wandb:        train/accuracy ▁▂▂▄▅▇██████████████████████████████████
+wandb:           train/count ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:  train/exact_accuracy ▁▁▁▁▁▂▅▆▆▆▆▇▇▇▆▇▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇█▇▇█▇████
+wandb:         train/lm_loss █▆▆▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb:              train/lr ▁▁▁▁▁▂▂▂▂▂▂▂▃▃▃▃▃▃▃▃▄▄▄▄▄▅▅▅▅▅▅▆▆▆▆▇▇▇▇█
+wandb: train/q_halt_accuracy ███████▆▅▄▂▂▁▁▃▂▂▃▃▃▃▃▃▃▃▃▄▃▄▃▃▃▃▄▃▃▃▃▃▃
+wandb:     train/q_halt_loss ▁▁▁▄▇▇▇█▇▇▆▆▆▆▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅
+wandb:           train/steps ▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+wandb: 
+wandb: Run summary:
+wandb:            num_params 27366402
+wandb:        train/accuracy 0.99747
+wandb:           train/count 1
+wandb:  train/exact_accuracy 0.37012
+wandb:         train/lm_loss 0.00891
+wandb:              train/lr 0.0002
+wandb: train/q_halt_accuracy 0.74609
+wandb:     train/q_halt_loss 0.5337
+wandb:           train/steps 1
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /home/hp/Documents/HRM/HRM/wandb/offline-run-20250805_200127-wqiq5wgn
+wandb: Find logs at: ./wandb/offline-run-20250805_200127-wqiq5wgn/logs
+
+## Abstract
+
 Reasoning, the process of devising and executing complex goal-oriented action sequences, remains a critical challenge in AI.
 Current large language models (LLMs) primarily employ Chain-of-Thought (CoT) techniques, which suffer from brittle task decomposition, extensive data requirements, and high latency. Inspired by the hierarchical and multi-timescale processing in the human brain, we propose the Hierarchical Reasoning Model (HRM), a novel recurrent architecture that attains significant computational depth while maintaining both training stability and efficiency.
 HRM executes sequential reasoning tasks in a single forward pass without explicit supervision of the intermediate process, through two interdependent recurrent modules: a high-level module responsible for slow, abstract planning, and a low-level module handling rapid, detailed computations. With only 27 million parameters, HRM achieves exceptional performance on complex reasoning tasks using only 1000 training samples. The model operates without pre-training or CoT data, yet achieves nearly perfect performance on challenging tasks including complex Sudoku puzzles and optimal path finding in large mazes.

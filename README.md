@@ -190,3 +190,4 @@ OMP_NUM_THREADS=8 torchrun --nproc-per-node 8 evaluate.py checkpoint=<CHECKPOINT
 }
 ```# HRM_text
 # HRM_text
+# HRM_text
